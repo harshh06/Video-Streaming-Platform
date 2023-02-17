@@ -12,8 +12,12 @@ const sideBarSlice = createSlice({
         closeSideBar(state) {
             state.open = false;
         },
+        openSideBar(state) {
+            state.open = true;
+        },
     },
 });
 
-export const { toggleSideBar, closeSideBar } = sideBarSlice.actions;
+export const { toggleSideBar, closeSideBar, openSideBar } =
+    sideBarSlice.actions;
 export default sideBarSlice.reducer;

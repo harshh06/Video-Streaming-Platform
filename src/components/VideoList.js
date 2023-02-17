@@ -14,7 +14,7 @@ function VideoList() {
         const json = await data.json();
         setVideoData(json.items);
     };
-    if (videoData === []) return <Shimmer />;
+    if (videoData.length === 0) return <Shimmer />;
     else
         return (
             <div className="m-2 py-5 border flex flex-wrap">

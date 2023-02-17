@@ -4,18 +4,13 @@ import { closeSideBar } from "../utils/sideBarSlice";
 import VideoComponent from "./VideoComponent";
 import { useSearchParams } from "react-router-dom";
 import { YT_KEY } from "../const";
+import CommentsContainer from "./CommentsContainer";
 
 function WatchPage() {
     const [searchParams] = useSearchParams();
     const dispatch = useDispatch();
-    useEffect(() => {
-        getVideo();
-        dispatch(closeSideBar());
-    });
 
-    const [video, setVideo] = useState({});
-
-    const getVideo = async () => {
+    const getVideo = React.useCallback(async () => {
         const data = await fetch(
             `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${searchParams.get(
                 "v"
@@ -23,7 +18,15 @@ function WatchPage() {
         );
         const json = await data.json();
         setVideo(json.items[0]);
-    };
+    }, [searchParams]);
+
+    useEffect(() => {
+        getVideo();
+        dispatch(closeSideBar());
+    }, [dispatch, getVideo]);
+
+    const [video, setVideo] = useState({});
+
     if (video === {}) return <></>;
     return (
         <div>
@@ -32,6 +35,7 @@ function WatchPage() {
                 width={video.snippet?.thumbnails?.standard?.widht}
                 height={video.snippet?.thumbnails?.standard?.height}
             />
+            <CommentsContainer />
         </div>
     );
 }
