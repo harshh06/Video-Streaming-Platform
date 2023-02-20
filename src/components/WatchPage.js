@@ -26,15 +26,11 @@ function WatchPage() {
     }, [dispatch, getVideo]);
 
     const [video, setVideo] = useState({});
-
+    // console.log(video);
     if (video === {}) return <></>;
     return (
         <div>
-            <VideoComponent
-                id={video.id}
-                width={video.snippet?.thumbnails?.standard?.widht}
-                height={video.snippet?.thumbnails?.standard?.height}
-            />
+            <VideoComponent video={video} />
             <CommentsContainer />
         </div>
     );

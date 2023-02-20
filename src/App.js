@@ -4,13 +4,19 @@ import "./App.css";
 import Body from "./components/Body";
 import Header from "./components/Header";
 import MainContainer from "./components/MainContainer";
+import VideoListQuery from "./components/VideoListQuery";
 import WatchPage from "./components/WatchPage";
 import store from "./utils/store";
 
 const appRouter = createBrowserRouter([
     {
         path: "/",
-        element: <Body />,
+        element: (
+            <>
+                <Header />
+                <Body />
+            </>
+        ),
         children: [
             {
                 path: "/",
@@ -20,6 +26,10 @@ const appRouter = createBrowserRouter([
                 path: "watch",
                 element: <WatchPage />,
             },
+            {
+                path: "search",
+                element: <VideoListQuery />,
+            },
         ],
     },
 ]);
@@ -28,7 +38,6 @@ function App() {
     return (
         <Provider store={store}>
             <div className="">
-                <Header />
                 <RouterProvider router={appRouter} />
             </div>
         </Provider>

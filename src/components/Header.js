@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeSideBar, toggleSideBar } from "../utils/sideBarSlice";
 import { isMobile } from "react-device-detect";
 import { updateCache } from "../utils/searchResultSlice";
+import { Link } from "react-router-dom";
 function Header() {
     // dispatch...
     const dispatch = useDispatch();
@@ -61,8 +62,9 @@ function Header() {
                 <button onClick={toggle}>
                     <img alt="sidebar-icon" className="h-10" src={icon} />
                 </button>
-
-                <img alt="yt-icon" className="h-10 " src={ytIcon} />
+                <Link to="/">
+                    <img alt="yt-icon" className="h-10 " src={ytIcon} />
+                </Link>
             </div>
             <div className="col-span-5 py-4  m-2">
                 <div>
@@ -84,11 +86,16 @@ function Header() {
                         {showSuggestions &&
                             searchSuggestions.map((suggestion, id) => {
                                 return (
-                                    <li
+                                    <Link
+                                        to={`/search?v=${suggestion}`}
                                         key={id}
-                                        className="hover:bg-gray-100 py-1 rounded-lg px-2">
-                                        🔎 {suggestion}
-                                    </li>
+                                        onMouseDown={(event) =>
+                                            event.preventDefault()
+                                        }>
+                                        <li className="hover:bg-gray-100 py-1 rounded-lg px-2">
+                                            🔎 {suggestion}
+                                        </li>
+                                    </Link>
                                 );
                             })}
                     </ul>
