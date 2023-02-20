@@ -75,7 +75,7 @@ function Header() {
                         onFocus={() => setShowSuggestions(true)}
                         onBlur={() => setShowSuggestions(false)}
                     />
-                    <Link to={`/search?v=${suggestion}`}>
+                    <Link to={`/search?v=${searchText}`}>
                         <button className="border h-8 rounded-r-xl px-4 bg-gray-100">
                             {" "}
                             🔎{" "}
