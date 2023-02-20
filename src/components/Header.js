@@ -27,7 +27,7 @@ function Header() {
 
     const getSearchResults = React.useCallback(async () => {
         const data = await fetch(
-            `http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${searchText}`
+            `https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${searchText}`
         );
         const json = await data.json();
         setSearchSuggestions(json[1]);
@@ -43,7 +43,6 @@ function Header() {
     useEffect(() => {
         // if already present in cache, dont call the search api..
         const timer = setTimeout(() => {
-            console.log(searchCache[searchCache]);
             if (searchCache[searchText]) {
                 setSearchSuggestions(searchCache[searchText]);
             } else {
