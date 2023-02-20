@@ -5,6 +5,7 @@ import VideoComponent from "./VideoComponent";
 import { useSearchParams } from "react-router-dom";
 import { YT_KEY } from "../const";
 import CommentsContainer from "./CommentsContainer";
+import LiveChat from "./LiveChat";
 
 function WatchPage() {
     const [searchParams] = useSearchParams();
@@ -29,9 +30,13 @@ function WatchPage() {
     // console.log(video);
     if (video === {}) return <></>;
     return (
-        <div>
-            <VideoComponent video={video} />
-            <CommentsContainer />
+        <div className="w-full">
+            <div className="flex w-full">
+                <VideoComponent video={video} />
+                <LiveChat className=" " />
+            </div>
+
+            <CommentsContainer className="w-1/2" />
         </div>
     );
 }

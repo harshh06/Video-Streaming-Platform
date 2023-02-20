@@ -2,7 +2,6 @@ import React from "react";
 import channel from "../assets/user.png";
 
 function VideoComponent({ video }) {
-    console.log(video);
     const { snippet, statistics, id } = video;
     return (
         <div className="p-5 mt-5 mx-5">
